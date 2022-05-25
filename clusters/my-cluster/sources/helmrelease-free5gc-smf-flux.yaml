@@ -61,40 +61,7 @@ spec:
       configmap:
         name: smf-configmap
       configuration:
-        configuration: "smfName: SMF\nserviceNameList:\n  - nsmf-pdusession\n  - nsmf-event-exposure\n
-          \ - nsmf-oam\nsnssaiInfos:\n  - sNssai:\n      sst: 1\n      sd: 010203\n
-          \   dnnInfos: # DNN information list\n      - dnn: internet # Data Network
-          Name\n        dns: # the IP address of DNS\n          ipv4: 8.8.8.8\n  -
-          sNssai:\n      sst: 1\n      sd: 112233\n    dnnInfos: # DNN information
-          list\n      - dnn: internet # Data Network Name\n        dns: # the IP address
-          of DNS\n          ipv4: 8.8.8.8\n  - sNssai:\n      sst: 2\n      sd: 112234
-          \   \n    dnnInfos:\n      - dnn: internet\n        dns: \n          ipv4:
-          8.8.8.8\nplmnList: # the list of PLMN IDs that this SMF belongs to (optional,
-          remove this key when unnecessary)\n  - mcc: \"208\" # Mobile Country Code
-          (3 digits string, digit: 0~9)\n    mnc: \"93\" # Mobile Network Code (2
-          or 3 digits string, digit: 0~9)\nuserplane_information: # list of userplane
-          information\n  up_nodes: # information of userplane node (AN or UPF)\n    gNB1:
-          # the name of the node\n      type: AN # the type of the node (AN or UPF)\n
-          \   UPF:  # the name of the node\n      type: UPF # the type of the node
-          (AN or UPF)\n      node_id: 10.100.50.241 # the IP/FQDN of N4 interface
-          on this UPF (PFCP)\n      sNssaiUpfInfos: # S-NSSAI information list for
-          this UPF\n            - sNssai: # S-NSSAI (Single Network Slice Selection
-          Assistance Information)\n                sst: 1 # Slice/Service Type (uinteger,
-          range: 0~255)\n                sd: 010203 # Slice Differentiator (3 bytes
-          hex string, range: 000000~FFFFFF)\n              dnnUpfInfoList: # DNN information
-          list for this S-NSSAI\n                - dnn: internet\n                  pools:\n
-          \                   - cidr: 10.1.0.0/17\n            - sNssai: # S-NSSAI
-          (Single Network Slice Selection Assistance Information)\n                sst:
-          1 # Slice/Service Type (uinteger, range: 0~255)\n                sd: 112233
-          # Slice Differentiator (3 bytes hex string, range: 000000~FFFFFF)\n              dnnUpfInfoList:
-          # DNN information list for this S-NSSAI\n                - dnn: internet\n
-          \                 pools:\n                    - cidr: 10.1.128.0/17 \n      interfaces:
-          # Interface list for this UPF\n            - interfaceType: N3 # the type
-          of the interface (N3 or N9)\n              endpoints: # the IP address of
-          this N3/N9 interface on this UPF\n                - 10.100.50.233\n              networkInstance:
-          internet # Data Network Name (DNN)\n  links: # the topology graph of userplane,
-          A and B represent the two nodes of each link\n    - A: gNB1\n      B: UPF\nlocality:
-          area1 # Name of the location where a set of AMF, SMF and UPFs are located"
+        configuration: ""
         logger:
           Aper:
             ReportCaller: false
