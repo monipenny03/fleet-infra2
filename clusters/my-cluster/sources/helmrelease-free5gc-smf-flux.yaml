@@ -61,7 +61,6 @@ spec:
       configmap:
         name: smf-configmap
       configuration:
-        configuration: ""
         logger:
           Aper:
             ReportCaller: false
