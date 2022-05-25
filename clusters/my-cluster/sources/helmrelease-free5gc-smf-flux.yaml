@@ -58,8 +58,6 @@ spec:
         maxReplicas: 100
         minReplicas: 1
         targetCPUUtilizationPercentage: 80
-      configmap:
-        name: smf-configmap
       configuration:
         logger:
           Aper:
