@@ -128,7 +128,7 @@ spec:
           ipAddress: 10.100.50.249
         service:
           ngap:
-            enabled: false
+            enabled: true
             name: amf-n2
             nodeport: 31412
             port: 38412
