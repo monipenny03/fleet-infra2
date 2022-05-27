@@ -1,0 +1,131 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: release-free5gc-n3iwf
+  namespace: project-flux
+spec:
+  chart:
+    spec:
+      chart: free5gc-n3iwf
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: source-project-flux
+  interval: 24h0m0s
+  values:
+    cpClusterIP: ""
+    fullnameOverride: ""
+    global:
+      amf:
+        n2if:
+          ipAddress: 10.100.50.249
+        service:
+          ngap:
+            enabled: false
+            name: amf-n2
+            nodeport: 31412
+            port: 38412
+            protocol: SCTP
+            type: NodePort
+      n2network:
+        cidr: 29
+        excludeIP: 10.100.50.254
+        gatewayIP: 10.100.50.254
+        masterIf: eth0
+        name: n2network
+        subnetIP: 10.100.50.248
+      n3network:
+        cidr: 29
+        excludeIP: 10.100.50.238
+        gatewayIP: 10.100.50.238
+        masterIf: eth0
+        name: n3network
+        subnetIP: 10.100.50.232
+      projectName: free5gc
+    multiCluster: false
+    n3iwf:
+      affinity: {}
+      autoscaling:
+        enabled: false
+        maxReplicas: 100
+        minReplicas: 1
+        targetCPUUtilizationPercentage: 80
+      configmap:
+        name: n3iwf-configmap
+      configuration:
+        IPSecInterfaceAddress: 10.0.0.1
+        configuration: "N3IWFInformation:\n  GlobalN3IWFID:\n    PLMNID:\n      MCC:
+          208\n      MNC: 93\n    N3IWFID: 135\n  Name:\n    free5GC_N3IWF\n  SupportedTAList:\n
+          \   - TAC: 000001\n      BroadcastPLMNList:\n        - PLMNID:\n            MCC:
+          208\n            MNC: 93\n          TAISliceSupportList:\n            -
+          SNSSAI:\n                SST: 1\n                SD: 010203\n            -
+          SNSSAI:\n                SST: 1\n                SD: 112233\n\n# IPSec virtual
+          interface\nIPSecInterfaceAddress: 10.0.0.1\n\n# IPSec virtual interface
+          mark\nIPSecInterfaceMark: 5\n\n# NAS TCP Listen Port\nNASTCPPort: 20000
+          \   \n\n# N3IWF FQDN\nFQDN: n3iwf.free5gc.org    \n\n# Security\n# Private
+          Key File Path\nPrivateKey:\n# Certificate Authority (CA)\nCertificateAuthority:\n#
+          Certificate\nCertificate:\n\n# IP address that will be allocated to UE in
+          IPSec tunnel\nUEIPAddressRange: 10.0.0.0/24"
+        logger:
+          Aper:
+            ReportCaller: false
+            debugLevel: info
+          N3IWF:
+            ReportCaller: false
+            debugLevel: info
+          NGAP:
+            ReportCaller: false
+            debugLevel: info
+          PathUtil:
+            ReportCaller: false
+            debugLevel: info
+      ike:
+        cidr: 24
+        gatewayIP: 172.16.10.1
+        ipAddress: 172.16.10.5
+        masterIf: eth0
+        name: ikenetwork
+        subnetIP: 172.16.10.0
+      image:
+        name: towards5gs/free5gc-n3iwf
+        pullPolicy: IfNotPresent
+      imagePullSecrets: []
+      livenessProbe:
+        failureThreshold: 3
+        initialDelaySeconds: 120
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 10
+      n2if:
+        ipAddress: 10.100.50.251
+      n3if:
+        ipAddress: 10.100.50.237
+      name: n3iwf
+      nodeSelector: {}
+      podAnnotations: {}
+      podSecurityContext: {}
+      readinessProbe:
+        failureThreshold: 40
+        initialDelaySeconds: 0
+        periodSeconds: 1
+        successThreshold: 1
+        timeoutSeconds: 1
+      replicaCount: 1
+      resources:
+        limits:
+          cpu: 100m
+          memory: 128Mi
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      securityContext:
+        capabilities:
+          add:
+          - NET_ADMIN
+      tolerations: []
+      volume:
+        mount: /free5gc/config/
+        name: n3iwf-volume
+    nameOverride: ""
+
