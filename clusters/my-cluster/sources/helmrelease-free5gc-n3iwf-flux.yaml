@@ -111,7 +111,7 @@ spec:
         periodSeconds: 1
         successThreshold: 1
         timeoutSeconds: 1
-      replicaCount: 1
+      replicaCount: 3
       resources:
         limits:
           cpu: 100m
